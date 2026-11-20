@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Cover Lab — poster-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <aside class="panel">
+    <header>
+      <h1>Leonida <em>Cover Lab</em></h1>
+      <p class="tag">Turn photos into bold multi-panel poster covers — sunset grades, heavy lettering, print-ready PNG. Everything is drawn locally; your photos never leave this device.</p>
+    </header>
+
+    <section>
+      <h2>Photos</h2>
+      <div class="samples" id="samples"></div>
+      <label class="upload">Add your own photos<input id="upload" type="file" accept="image/*" multiple></label>
+      <div class="seg" role="group" aria-label="Photo mode">
+        <button type="button" data-mode="spread">One photo, spread</button>
+        <button type="button" data-mode="multi">Photo per panel</button>
+      </div>
+      <div class="seg panels" role="group" aria-label="Active panel">
+        <button type="button" data-panel="0">1</button>
+        <button type="button" data-panel="1">2</button>
+        <button type="button" data-panel="2">3</button>
+        <button type="button" data-panel="3">4</button>
+      </div>
+      <p class="active-name" id="activeName">Panel 1</p>
+      <label class="slider">Zoom <input id="zoom" type="range" min="1" max="2.6" step="0.01" value="1"></label>
+      <p class="hint">Drag the cover to pan the photo under your pointer.</p>
+    </section>
+
+    <section>
+      <h2>Layout</h2>
+      <div class="grid2">
+        <button type="button" data-layout="hero">Hero Grid</button>
+        <button type="button" data-layout="quad">Classic Quad</button>
+        <button type="button" data-layout="diagonal">Diagonal</button>
+        <button type="button" data-layout="strips">Strips</button>
+      </div>
+      <label class="field">Gutter
+        <select id="gutter">
+          <option value="dark">Dark</option>
+          <option value="light">White</option>
+          <option value="accent">Grade accent</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>Colour grade</h2>
+      <div class="grid2">
+        <button type="button" data-grade="vice">Vice Sunset</button>
+        <button type="button" data-grade="neon">Neon Night</button>
+        <button type="button" data-grade="golden">Golden Hour</button>
+        <button type="button" data-grade="noir">Noir</button>
+      </div>
+      <label class="slider">Intensity <input id="intensity" type="range" min="0" max="1" step="0.01" value="0.85"></label>
+      <div class="checks">
+        <label><input type="checkbox" id="halftone" checked> Halftone dots</label>
+        <label><input type="checkbox" id="vignette" checked> Vignette</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Lettering</h2>
+      <label class="field">Title <input id="caption" type="text" maxlength="42" value="LEONIDA NIGHTS"></label>
+      <label class="field">Subtitle <input id="sub" type="text" maxlength="60" value="WELCOME TO THE NEON COAST"></label>
+      <label class="field">Sticker <input id="sticker" type="text" maxlength="16" value="LEONIDA"></label>
+      <label class="slider">Sticker tilt <input id="angle" type="range" min="-30" max="30" step="1" value="-12"></label>
+    </section>
+
+    <section>
+      <h2>Export</h2>
+      <label class="field">Size
+        <select id="size">
+          <option value="1080x1080">Square · 1080 × 1080</option>
+          <option value="1080x1350">Portrait · 1080 × 1350</option>
+          <option value="1920x1080" selected>Landscape · 1920 × 1080</option>
+        </select>
+      </label>
+      <button id="export" type="button" class="big">Export PNG</button>
+      <p id="status" role="status"></p>
+    </section>
+  </aside>
+  <section class="stage">
+    <canvas id="cover" width="1920" height="1080" aria-label="Cover preview"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
